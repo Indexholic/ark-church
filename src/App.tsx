@@ -182,7 +182,7 @@ export default function App() {
                  <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Sunday Worship</p>
                  <div className="space-y-1">
                    <p className="text-sm font-medium">1부: 11:00 AM</p>
-                   <p className="text-sm font-medium">2부: 2:00 PM <span className="text-blue-400 text-[10px] ml-2">LIVE</span></p>
+                   <p className="text-sm font-medium">2부: 2:00 PM</p>
                  </div>
                </div>
                <div>
