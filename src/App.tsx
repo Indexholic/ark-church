@@ -6,6 +6,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'motion/react';
 import { Menu, X, MapPin, Clock, Phone, ChevronRight } from 'lucide-react';
+import churchimg from './assets/threecrosses.jpg';
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,6 +16,9 @@ export default function App() {
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 1000], [0, 400]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+
+  const [isMapOpen, setIsMapOpen] = useState(false);
+  const [isGivingOpen, setIsGivingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,11 +37,13 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans overflow-hidden">
       {/* Navigation Bar */}
-      <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-[#050505]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] border-b border-white/10 py-4' : 'bg-gradient-to-b from-[#050505] to-transparent py-8'
-        }`}
-      >
+<header
+  className={`fixed top-0 w-full z-50 transition-all duration-300 border-b border-white/10 ${
+    isScrolled 
+      ? 'bg-[#050505]/90 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.5)] py-4' 
+      : 'bg-gradient-to-b from-[#050505] to-transparent py-8'
+  }`}
+>
         <div className="max-w-7xl mx-auto px-8 md:px-12 flex items-center justify-between">
           <a href="#" className="flex items-center space-x-3">
              <div className="w-8 h-8 flex-shrink-0 border border-white flex items-center justify-center rotate-45">
@@ -54,16 +60,19 @@ export default function App() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-xs font-medium uppercase tracking-[0.2em] opacity-80 hover:opacity-100 transition-all text-white border-b border-transparent hover:border-white pb-1"
+                className="text-base font-medium uppercase tracking-[0.08em] opacity-90 hover:opacity-100 transition-all text-white border-b border-transparent hover:border-white pb-1"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          <button className="hidden md:block px-6 py-2 border border-white/20 rounded-full text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all">
-            Online Giving
-          </button>
+<button
+  onClick={() => setIsGivingOpen(true)}
+  className="hidden md:block px-6 py-2 border border-white/20 rounded-full text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all"
+>
+  Online Giving
+</button>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -99,9 +108,12 @@ export default function App() {
                   {link.name}
                 </a>
               ))}
-              <button className="self-start px-6 py-3 border border-white/20 text-white text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all w-full">
-                Online Giving
-              </button>
+<button
+  onClick={() => setIsGivingOpen(true)}
+  className="self-start px-6 py-3 border border-white/20 text-white text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition-all w-full"
+>
+  Online Giving
+</button>
             </div>
           </motion.div>
         )}
@@ -122,9 +134,9 @@ export default function App() {
              <path d="M400 50 L400 250" stroke="white" strokeWidth="0.5" />
              <path d="M350 150 L450 150" stroke="white" strokeWidth="0.5" />
           </svg>
-          <div className="absolute inset-0 bg-[#050505]/70 mix-blend-multiply z-10" />
+          <div className="absolute inset-0 bg-[#050505]/60 mix-blend-multiply z-10" />
           <img
-            src="https://images.unsplash.com/photo-1437604470275-eb2f4f210d79?auto=format&fit=crop&q=80&w=2600"
+            src={churchimg}
             alt="Church Background"
             className="w-full h-full object-cover grayscale opacity-40 mix-blend-luminosity"
           />
@@ -163,12 +175,28 @@ export default function App() {
              transition={{ duration: 0.8, delay: 1 }}
              className="flex flex-col sm:flex-row gap-4"
           >
-             <button className="bg-white text-black px-10 py-4 font-bold text-sm uppercase tracking-wider hover:bg-blue-500 hover:text-white transition-all">
-                예배 안내 받기
-             </button>
-             <button className="border border-white/30 px-10 py-4 font-bold text-sm text-white uppercase tracking-wider backdrop-blur-sm hover:border-white transition-all">
-                교회 소개
-             </button>
+<button
+  onClick={() => {
+    document.getElementById('schedule')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }}
+  className="bg-white text-black px-10 py-4 font-bold text-sm uppercase tracking-wider hover:bg-blue-500 hover:text-white transition-all"
+>
+  예배 안내 
+</button>
+<button
+  onClick={() => {
+    document.getElementById('location')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }}
+  className="border border-white/30 px-10 py-4 font-bold text-sm text-white uppercase tracking-wider backdrop-blur-sm hover:border-white transition-all"
+>
+  오시는 길
+</button>
           </motion.div>
 
           <motion.div
@@ -203,32 +231,88 @@ export default function App() {
         </div>
       </div>
 
-      {/* Welcome Section */}
-      <section id="welcome" className="py-24 md:py-40 px-6 bg-[#050505] border-t border-white/5 relative overflow-hidden shrink-0 scroll-mt-20">
-        <div className="absolute top-0 right-[-100px] w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-6">Welcome to the Sanctuary</h2>
-            <p className="text-4xl md:text-6xl font-serif font-light text-white leading-[1.2] mb-10">
-              "수고하고 무거운 짐 진 자들아<br className="hidden md:block"/> 다 내게로 오라"
-            </p>
-            <div className="w-[1px] h-16 bg-gradient-to-b from-blue-500 to-transparent mx-auto mb-10" />
-            <p className="text-white/60 text-lg md:text-xl leading-relaxed font-light">
-              방주교회는 모든 영혼을 품는 따뜻한 신앙 공동체입니다.
-              <br />상처받은 영혼들이 치유를 경험하고, 진리 안에서 참된 자유를 누리며,
-              <br className="hidden md:block"/>세상을 향해 사랑을 흘려보내는 아름다운 교회로 여러분을 초대합니다.
-            </p>
-          </motion.div>
+<AnimatePresence>
+  {isGivingOpen && (
+    <motion.div
+      className="fixed inset-0 z-[999] bg-black/70 flex items-center justify-center px-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={() => setIsGivingOpen(false)}
+    >
+      <motion.div
+        className="w-full max-w-lg bg-[#0B0B0B] border border-white/10 rounded-sm p-8 relative"
+        initial={{ scale: 0.9, y: 30, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.95, y: 20, opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* 닫기 버튼 */}
+        <button
+          onClick={() => setIsGivingOpen(false)}
+          className="absolute top-4 right-4 text-white/60 hover:text-white text-xs"
+        >
+          닫기
+        </button>
+
+        <h3 className="text-2xl font-serif font-light text-white mb-6">
+          Online Giving
+        </h3>
+
+        <div className="space-y-4 text-white/70 text-sm leading-relaxed">
+          <p>
+            교회를 향한 후원은 공동체 사역과 예배 사역에 사용됩니다.
+          </p>
+
+          <div className="border-t border-white/10 pt-4 space-y-2">
+            <p><span className="text-white/40">담임목사</span> 곽병호</p>
+            <p><span className="text-white/40">계좌</span> 새마을금고 9002154573050</p>
+          </div>
+
+          <div className="text-white/40 text-xs pt-2">
+            주께서 내게 복을 주시려거든 나의 지역을 넓히시고 주의 손으로 나를 도우사<br>
+            </br> 나로 환난을 벗어나 내게 근심이 없게 하옵소서 [역대상 4:10]
+
+          </div>
         </div>
-      </section>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+{/* Welcome Section */}
+<section id="welcome" className="py-24 md:py-40 px-6 bg-white border-t border-black/10 relative overflow-hidden shrink-0 scroll-mt-20">
+  <div className="absolute top-0 right-[-100px] w-[500px] h-[500px] bg-blue-200/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div className="max-w-4xl mx-auto text-center relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+    >
+      <h2 className="text-blue-600 text-xs font-bold tracking-[0.3em] uppercase mb-6">
+        Welcome to the Sanctuary
+      </h2>
+
+      <p className="text-4xl md:text-6xl font-serif font-light text-black leading-[1.2] mb-10">
+        "수고하고 무거운 짐 진 자들아<br className="hidden md:block" /> 다 내게로 오라"
+      </p>
+
+      <div className="w-[1px] h-16 bg-gradient-to-b from-blue-500 to-transparent mx-auto mb-10" />
+
+      <p className="text-black/70 text-lg md:text-xl leading-relaxed font-light">
+        방주교회는 모든 영혼을 품는 따뜻한 신앙 공동체입니다.
+        <br />상처받은 영혼들이 치유를 경험하고, 진리 안에서 참된 자유를 누리며,
+        <br className="hidden md:block" />세상을 향해 사랑을 흘려보내는 아름다운 교회로 여러분을 초대합니다.
+      </p>
+    </motion.div>
+  </div>
+</section>
 
       {/* Worship Schedule Section */}
-      <section id="schedule" className="py-24 md:py-36 px-6 bg-[#0B0B0B] border-t border-white/5 scroll-mt-20 relative">
+      <section id="schedule" className="py-24 md:py-36 px-6 bg-gray-100 border-t border-white/5 scroll-mt-20 relative">
         <div className="absolute bottom-0 left-[-100px] w-[600px] h-[600px] bg-indigo-900/5 rounded-full blur-[150px] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
@@ -238,7 +322,7 @@ export default function App() {
              className="text-center mb-20"
           >
             <h2 className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-4">Worship Schedule</h2>
-            <h3 className="text-4xl md:text-6xl font-serif font-light text-white">예배 안내</h3>
+            <h3 className="text-4xl md:text-6xl font-serif font-light text-black">예배 안내</h3>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -272,7 +356,7 @@ export default function App() {
       </section>
 
 {/* Location Section */}
-<section id="location" className="py-24 md:py-36 px-6 bg-[#050505] border-t border-white/5 scroll-mt-20">
+<section id="location" className="py-24 md:py-36 px-6 bg-white border-t border-black/10 scroll-mt-20">
   <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
 
     {/* 왼쪽: 텍스트 */}
@@ -282,17 +366,26 @@ export default function App() {
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-4">Location & Contact</h2>
-      <h3 className="text-4xl md:text-6xl font-serif font-light text-white mb-12">오시는 길</h3>
-      
+      <h2 className="text-blue-600 text-xs font-bold tracking-[0.3em] uppercase mb-4">
+        Location & Contact
+      </h2>
+
+      <h3 className="text-4xl md:text-6xl font-serif font-light text-black mb-12">
+        오시는 길
+      </h3>
+
       <div className="space-y-10">
+
         <div className="flex items-start gap-6">
-          <div className="w-12 h-12 border border-white/20 text-white/60 rounded-full flex items-center justify-center shrink-0">
+          <div className="w-12 h-12 border border-black/20 text-black/60 rounded-full flex items-center justify-center shrink-0">
             <MapPin className="w-5 h-5" />
           </div>
+
           <div>
-            <h4 className="font-serif font-light text-white text-xl tracking-wide mb-3">교회 주소</h4>
-            <p className="text-white/50 font-light leading-relaxed">
+            <h4 className="font-serif font-light text-black text-xl tracking-wide mb-3">
+              교회 주소
+            </h4>
+            <p className="text-black/60 font-light leading-relaxed">
               경기도 구리시 안골로4 프라자빌딩 7층<br />
               방주교회
             </p>
@@ -300,23 +393,30 @@ export default function App() {
         </div>
 
         <div className="flex items-start gap-6">
-          <div className="w-12 h-12 border border-white/20 text-white/60 rounded-full flex items-center justify-center shrink-0">
+          <div className="w-12 h-12 border border-black/20 text-black/60 rounded-full flex items-center justify-center shrink-0">
             <Phone className="w-5 h-5" />
           </div>
+
           <div>
-            <h4 className="font-serif font-light text-white text-xl tracking-wide mb-3">연락처</h4>
-            <p className="text-white/50 font-light leading-relaxed">
+            <h4 className="font-serif font-light text-black text-xl tracking-wide mb-3">
+              연락처
+            </h4>
+            <p className="text-black/60 font-light leading-relaxed">
               010-5529-0330<br />
               bangjuchurch1@gmail.com
             </p>
           </div>
         </div>
+
       </div>
 
-      <button className="mt-14 px-10 py-4 border border-white/30 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all inline-flex items-center gap-3 group">
-        길찾기 안내
-        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-      </button>
+<button
+  onClick={() => setIsMapOpen(true)}
+  className="mt-14 px-10 py-4 border border-black/30 text-black font-bold text-xs uppercase tracking-[0.2em] hover:bg-black hover:text-white transition-all inline-flex items-center gap-3 group"
+>
+  길찾기 안내
+  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+</button>
     </motion.div>
 
     {/* 오른쪽: 지도 */}
@@ -325,7 +425,7 @@ export default function App() {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="w-full h-[400px] md:h-[600px] bg-[#0A0A0A] border border-white/10 rounded-sm overflow-hidden relative"
+      className="w-full h-[400px] md:h-[600px] bg-white border border-black/10 rounded-sm overflow-hidden relative"
     >
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.2201160817413!2d127.12887877656325!3d37.59697827203073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cb0a3e0eb90f3%3A0x396ca693e7f8fc6e!2z7ZSE65287J6Q67mM65Sp!5e0!3m2!1sko!2skr!4v1777741835494!5m2!1sko!2skr"
@@ -337,6 +437,31 @@ export default function App() {
 
   </div>
 </section>
+
+{isMapOpen && (
+  <div
+    className="fixed inset-0 z-[999] bg-black/70 flex items-center justify-center"
+    onClick={() => setIsMapOpen(false)}
+  >
+    <div
+      className="w-[90vw] h-[80vh] bg-white relative rounded-sm overflow-hidden"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={() => setIsMapOpen(false)}
+        className="absolute top-4 right-4 z-10 bg-black text-white px-3 py-1 text-xs"
+      >
+        닫기
+      </button>
+
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.2201160817413!2d127.12887877656325!3d37.59697827203073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cb0a3e0eb90f3%3A0x396ca693e7f8fc6e!2z7ZSE65287J6Q67mM65Sp!5e0!3m2!1sko!2skr!4v1777741835494!5m2!1sko!2skr"
+        className="w-full h-full border-0"
+        loading="lazy"
+      />
+    </div>
+  </div>
+)}
 
       {/* Footer */}
       <footer className="bg-[#000000] text-white py-20 px-6 border-t border-white/10 relative overflow-hidden">
@@ -363,6 +488,7 @@ export default function App() {
   );
 }
 
+
 const scheduleData = [
   {
     title: '주일 예배',
@@ -386,4 +512,6 @@ const scheduleData = [
     ]
   }
 ];
+
+
 
