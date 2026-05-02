@@ -146,7 +146,7 @@ export default function App() {
             className="text-6xl md:text-8xl lg:text-[100px] font-serif font-light text-white mb-8 leading-[1.1] md:leading-[0.9]"
           >
             인생의 폭풍 속에서<br/>
-            <span className="italic font-medium text-blue-100">안식의 방주</span>로
+            안식의 방주로
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -154,8 +154,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-lg text-white/60 font-light max-w-lg leading-relaxed mb-10 border-l border-blue-500 pl-6"
           >
-            세상의 풍랑 속에서 생명을 살리고 회복시키는<br className="hidden md:block" /> 구원의 방주가 되겠습니다.<br/>
-            당신의 자리를 준비했습니다.
+            세상의 풍랑 속에서 생명을 살리고 회복시키는<br className="hidden md:block" /> 구원의 방주가 되겠습니다.
           </motion.p>
           
           <motion.div
@@ -182,14 +181,14 @@ export default function App() {
                <div>
                  <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Sunday Worship</p>
                  <div className="space-y-1">
-                   <p className="text-sm font-medium">1부: 09:00 AM</p>
-                   <p className="text-sm font-medium">2부: 11:30 AM <span className="text-blue-400 text-[10px] ml-2">LIVE</span></p>
+                   <p className="text-sm font-medium">1부: 11:00 AM</p>
+                   <p className="text-sm font-medium">2부: 2:00 PM <span className="text-blue-400 text-[10px] ml-2">LIVE</span></p>
                  </div>
                </div>
                <div>
                  <p className="text-[10px] text-white/40 uppercase tracking-widest mb-3">Quick Contact</p>
-                 <p className="text-sm font-medium">02-123-4567</p>
-                 <p className="text-sm font-medium opacity-60">info@arkchurch.kr</p>
+                 <p className="text-sm font-medium">010-5529-0330</p>
+                 <p className="text-sm font-medium opacity-60">bangjuchurch1@gmail.com</p>
                </div>
              </div>
 
@@ -198,7 +197,7 @@ export default function App() {
                  <div className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center text-xs opacity-50 hover:bg-white hover:text-black hover:opacity-100 transition-all cursor-pointer">IG</div>
                  <div className="w-10 h-10 border border-white/20 rounded-full flex items-center justify-center text-xs opacity-50 hover:bg-white hover:text-black hover:opacity-100 transition-all cursor-pointer">YT</div>
                </div>
-               <p className="text-[10px] text-white/30 font-light">서울특별시 서초구 방주대로 102</p>
+               <p className="text-[10px] text-white/30 font-light">경기도 구리시 안골로4 프라자빌딩 7층</p>
              </div>
           </motion.div>
         </div>
@@ -272,73 +271,72 @@ export default function App() {
         </div>
       </section>
 
-      {/* Location Section */}
-      <section id="location" className="py-24 md:py-36 px-6 bg-[#050505] border-t border-white/5 scroll-mt-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-4">Location & Contact</h2>
-            <h3 className="text-4xl md:text-6xl font-serif font-light text-white mb-12">오시는 길</h3>
-            
-            <div className="space-y-10">
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 border border-white/20 text-white/60 rounded-full flex items-center justify-center shrink-0">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-serif font-light text-white text-xl tracking-wide mb-3">교회 주소</h4>
-                  <p className="text-white/50 font-light leading-relaxed">
-                    서울특별시 서초구 방주대로 102 (성락타워 15층)<br />
-                    방주교회 본당
-                  </p>
-                </div>
-              </div>
+{/* Location Section */}
+<section id="location" className="py-24 md:py-36 px-6 bg-[#050505] border-t border-white/5 scroll-mt-20">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
 
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 border border-white/20 text-white/60 rounded-full flex items-center justify-center shrink-0">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-serif font-light text-white text-xl tracking-wide mb-3">연락처</h4>
-                  <p className="text-white/50 font-light leading-relaxed">02-123-4567<br />info@arkchurch.kr</p>
-                </div>
-              </div>
-            </div>
-
-            <button className="mt-14 px-10 py-4 border border-white/30 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all inline-flex items-center gap-3 group">
-              길찾기 안내
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="w-full h-[400px] md:h-[600px] bg-[#0A0A0A] border border-white/10 rounded-sm overflow-hidden relative group"
-          >
-            {/* Map Placeholder Image */}
-            <img 
-              src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1600" 
-              alt="Map Location" 
-              className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105 opacity-50 grayscale mix-blend-screen"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90" />
-            
-            <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10 lg:right-10 bg-[#050505]/70 backdrop-blur-md p-6 lg:p-8 border border-white/10 flex items-center justify-between">
-               <p className="text-sm md:text-base font-light tracking-wide flex items-center gap-3 text-white">
-                  <MapPin className="w-5 h-5 text-blue-400" /> 방주교회 대예배당
-               </p>
-               <span className="text-[10px] text-white/40 uppercase tracking-[0.2em] hidden sm:block border-b border-white/20 pb-1">Sanctuary</span>
-            </div>
-          </motion.div>
+    {/* 왼쪽: 텍스트 */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <h2 className="text-blue-400 text-xs font-bold tracking-[0.3em] uppercase mb-4">Location & Contact</h2>
+      <h3 className="text-4xl md:text-6xl font-serif font-light text-white mb-12">오시는 길</h3>
+      
+      <div className="space-y-10">
+        <div className="flex items-start gap-6">
+          <div className="w-12 h-12 border border-white/20 text-white/60 rounded-full flex items-center justify-center shrink-0">
+            <MapPin className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-serif font-light text-white text-xl tracking-wide mb-3">교회 주소</h4>
+            <p className="text-white/50 font-light leading-relaxed">
+              경기도 구리시 안골로4 프라자빌딩 7층<br />
+              방주교회
+            </p>
+          </div>
         </div>
-      </section>
+
+        <div className="flex items-start gap-6">
+          <div className="w-12 h-12 border border-white/20 text-white/60 rounded-full flex items-center justify-center shrink-0">
+            <Phone className="w-5 h-5" />
+          </div>
+          <div>
+            <h4 className="font-serif font-light text-white text-xl tracking-wide mb-3">연락처</h4>
+            <p className="text-white/50 font-light leading-relaxed">
+              010-5529-0330<br />
+              bangjuchurch1@gmail.com
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <button className="mt-14 px-10 py-4 border border-white/30 text-white font-bold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all inline-flex items-center gap-3 group">
+        길찾기 안내
+        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      </button>
+    </motion.div>
+
+    {/* 오른쪽: 지도 */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="w-full h-[400px] md:h-[600px] bg-[#0A0A0A] border border-white/10 rounded-sm overflow-hidden relative"
+    >
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.2201160817413!2d127.12887877656325!3d37.59697827203073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cb0a3e0eb90f3%3A0x396ca693e7f8fc6e!2z7ZSE65287J6Q67mM65Sp!5e0!3m2!1sko!2skr!4v1777741835494!5m2!1sko!2skr"
+        className="w-full h-full border-0"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </motion.div>
+
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="bg-[#000000] text-white py-20 px-6 border-t border-white/10 relative overflow-hidden">
@@ -348,7 +346,7 @@ export default function App() {
             <h2 className="text-3xl font-serif font-light tracking-widest mb-6 text-white">ARK CHURCH <span className="text-sm opacity-50 ml-2 font-sans tracking-normal hidden md:inline">| 방주교회</span></h2>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm font-light">
               대한예수교장로회 방주교회<br />
-              담임목사: 김요한<br /><br />
+              담임목사: 곽병호<br /><br />
               <span className="opacity-70">Copyright {new Date().getFullYear()} Ark Church. All rights reserved.</span>
             </p>
           </div>
@@ -369,26 +367,22 @@ const scheduleData = [
   {
     title: '주일 예배',
     times: [
-      { name: '1부 예배', time: '07:30 AM' },
-      { name: '2부 예배', time: '09:30 AM' },
-      { name: '3부 예배 (청년부)', time: '11:45 AM' },
-      { name: '4부 오후예배', time: '14:00 PM' },
+      { name: '1부 예배', time: '11:00 AM' },
+      { name: '2부 예배', time: '2:00 PM' },
     ]
   },
   {
     title: '주중 예배',
     times: [
-      { name: '새벽 기도회 (월~금)', time: '05:00 AM' },
-      { name: '수요 예배', time: '19:30 PM' },
-      { name: '금요 성령집회', time: '20:30 PM' },
+      { name: '새벽 기도 (월~금)', time: '5:30 AM' },
+      { name: '수요 예배', time: '7:00 PM' },
     ]
   },
   {
-    title: '교회학교 예배',
+    title: '기타 예배',
     times: [
-      { name: '유치부 (주일)', time: '09:30 AM' },
-      { name: '유초등부 (주일)', time: '09:30 AM' },
-      { name: '중고등부 (주일)', time: '09:30 AM' },
+      { name: '목회자·청소년 예배', time: '9:00 AM' },
+      { name: '금향로 기도회', time: '9:00 PM' },
     ]
   }
 ];
